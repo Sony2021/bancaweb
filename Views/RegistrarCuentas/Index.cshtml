@@ -1,0 +1,40 @@
+@model bancaweb.Models.RegistrarCuentas
+
+@{
+    ViewBag.Title = "Registrar Cuentas";
+}
+
+<h2>Registrar Cuenta</h2>
+
+@using (Html.BeginForm("EnviarMensaje", "RegistrarCuentas", FormMethod.Post))
+{
+    //@Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NombreTitular)
+        @Html.TextBoxFor(model => model.NombreTitular, new { @class = "form-control" })
+        @Html.ValidationMessageFor(Model => Model.NombreTitular)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoCuenta)
+        @Html.DropDownListFor(model => model.TipoCuenta, new SelectList(new List<string> { "Cuenta de Ahorros", "Cuenta Corriente" }), "Seleccione", new { @class = "form-control" })
+            @Html.ValidationMessageFor(Model => Model.TipoCuenta)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SaldoInicial)
+        @Html.TextBoxFor(model => model.SaldoInicial, new { @class = "form-control" })
+        @Html.ValidationMessageFor(Model => Model.SaldoInicial)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(Model => Model.Email)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar Cuenta</button>
+
+    <h1>@ViewData["Message"]</h1>
+}
